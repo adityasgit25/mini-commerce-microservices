@@ -1,6 +1,7 @@
 package com.aditya.orderservice.service;
 
 import com.aditya.common.dto.ProductResponse;
+import com.aditya.orderservice.client.ProductClient;
 import com.aditya.orderservice.entity.Order;
 import com.aditya.orderservice.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,13 +15,10 @@ import java.math.BigDecimal;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final RestTemplate restTemplate;
+    private final ProductClient productClient;
 
     public Order createOrder(Long userId, Long productId, Integer quantity) {
-        ProductResponse productResponse = restTemplate.getForObject(
-                "http://localhost:8082/products/" + productId,
-                ProductResponse.class
-        );
+        ProductResponse productResponse = productClient.getProduct(productId);
 
         BigDecimal totalPrice = productResponse.getPrice().multiply(BigDecimal.valueOf(quantity));
 
