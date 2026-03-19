@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 /**
  * Feign only works with interfaces.
  */
-@FeignClient(name = "product-service", url = "http://localhost:8082")
+@FeignClient(name = "product-service", fallback = ProductClientFallback.class)
 public interface ProductClient {
 
     @GetMapping("/products/{id}")

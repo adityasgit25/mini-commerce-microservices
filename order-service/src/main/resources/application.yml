@@ -14,3 +14,23 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8762/eureka
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      productService:
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+
+
+feign:
+  circuitbreaker:
+    enabled: true
