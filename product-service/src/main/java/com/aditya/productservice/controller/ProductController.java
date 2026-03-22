@@ -20,7 +20,7 @@ public class ProductController {
         return productService.createProduct(product);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = "application/json")
     public ProductResponse getProduct(@PathVariable("id") Long id) {
         return productService.getProductById(id);
     }
