@@ -40,3 +40,12 @@ resilience4j:
 feign:
   circuitbreaker:
     enabled: true
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0   # capture all requests
+
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans

@@ -1,0 +1,16 @@
+OpenTelemetry = standard way to collect telemetry data
+
+Telemetry includes:
+    - Traces (you implemented via Zipkin)
+    - Metrics (Prometheus)
+    - Logs
+
+OpenTelemetry = data collection layer
+Zipkin / Prometheus / Grafana = visualization tools
+
+Spring Boot 3 uses OpenTelemetry internally
+When you added: Micrometer Tracing
+You are already using OpenTelemetry concepts indirectly
+
+
+
