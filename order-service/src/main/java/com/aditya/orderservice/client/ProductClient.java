@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * Feign only works with interfaces.
  */
 @FeignClient(
-        name = "product-service",
-        url = "http://localhost:8082"
+        name = "product-service"
 )
 public interface ProductClient {
 

@@ -6,7 +6,7 @@ spring:
     name: inventory-service
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
 
     consumer:
       group-id: inventory-group
@@ -19,9 +19,11 @@ spring:
         spring.json.value.default.type: com.aditya.common.dto.OrderCreatedEvent
 
 eureka:
+  instance:
+    prefer-ip-address: ${EUREKA_INSTANCE_PREFER_IP_ADDRESS:false}
   client:
     service-url:
-      defaultZone: http://localhost:8762/eureka
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}
 
 management:
   tracing:
@@ -30,7 +32,7 @@ management:
 
   zipkin:
     tracing:
-      endpoint: http://localhost:9411/api/v2/spans
+      endpoint: ${ZIPKIN_ENDPOINT:http://localhost:9411/api/v2/spans}
 
   endpoints:
     web:

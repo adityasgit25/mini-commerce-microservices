@@ -6,9 +6,9 @@ spring:
     name: product-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/product_db
-    username: root
-    password: mysql123
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:product_db}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:mysql123}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -18,17 +18,19 @@ spring:
 
   data:
     redis:
-      host: localhost
-      port: 6379
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
 
   cache:
     redis:
       time-to-live: 600000
 
 eureka:
+  instance:
+    prefer-ip-address: ${EUREKA_INSTANCE_PREFER_IP_ADDRESS:false}
   client:
     service-url:
-      defaultZone: http://localhost:8762/eureka
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}
 
 
 management:
@@ -38,7 +40,7 @@ management:
 
   zipkin:
     tracing:
-      endpoint: http://localhost:9411/api/v2/spans
+      endpoint: ${ZIPKIN_ENDPOINT:http://localhost:9411/api/v2/spans}
 
   endpoints:
     web:

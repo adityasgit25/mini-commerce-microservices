@@ -6,26 +6,28 @@ spring:
     name: order-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/order_db
-    username: root
-    password: mysql123
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:order_db}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:mysql123}
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
 
-    kafka:
-      producer:
-        bootstrap-servers: localhost:9092
-        key-serializer: org.apache.kafka.common.serialization.StringSerializer
-        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 
 eureka:
+  instance:
+    prefer-ip-address: ${EUREKA_INSTANCE_PREFER_IP_ADDRESS:false}
   client:
     service-url:
-      defaultZone: http://localhost:8762/eureka
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}
 
 
 resilience4j:
@@ -48,7 +50,7 @@ management:
 
   zipkin:
     tracing:
-      endpoint: http://localhost:9411/api/v2/spans
+      endpoint: ${ZIPKIN_ENDPOINT:http://localhost:9411/api/v2/spans}
 
   endpoints:
     web:

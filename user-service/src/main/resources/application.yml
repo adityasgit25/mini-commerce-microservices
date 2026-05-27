@@ -6,9 +6,9 @@ spring:
     name: user-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/user_db
-    username: root
-    password: mysql123
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:user_db}
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:mysql123}
 
   jpa:
     hibernate:
@@ -16,6 +16,23 @@ spring:
     show-sql: true
 
 eureka:
+  instance:
+    prefer-ip-address: ${EUREKA_INSTANCE_PREFER_IP_ADDRESS:false}
   client:
     service-url:
-      defaultZone: http://localhost:8762/eureka
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  endpoint:
+    prometheus:
+      enabled: true
+
+  metrics:
+    export:
+      prometheus:
+        enabled: true
