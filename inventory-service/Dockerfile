@@ -2,7 +2,7 @@
 FROM eclipse-temurin:21-jdk-jammy
 
 # App jar location
-ARG JAR_FILE=target/inventory-service-*.jar
+ARG JAR_FILE=inventory-service/target/inventory-service-*.jar
 
 # Copy jar into container
 COPY ${JAR_FILE} app.jar

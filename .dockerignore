@@ -1,0 +1,11 @@
+.git
+.idea
+.DS_Store
+**/.DS_Store
+**/target/*.jar.original
+**/target/classes
+**/target/generated-sources
+**/target/generated-test-sources
+**/target/maven-archiver
+**/target/maven-status
+**/target/surefire-reports
