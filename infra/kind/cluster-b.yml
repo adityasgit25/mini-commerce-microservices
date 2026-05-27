@@ -1,0 +1,24 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: mini-commerce-b
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30081
+        hostPort: 28081
+        protocol: TCP
+      - containerPort: 30082
+        hostPort: 28082
+        protocol: TCP
+      - containerPort: 30083
+        hostPort: 28083
+        protocol: TCP
+      - containerPort: 30084
+        hostPort: 28084
+        protocol: TCP
+      - containerPort: 30761
+        hostPort: 28761
+        protocol: TCP
+      - containerPort: 30411
+        hostPort: 29411
+        protocol: TCP
